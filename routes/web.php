@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,27 @@ use Illuminate\Support\Facades\Route;
 //     return "Halaman artikel dengan id " . $id;
 // } );
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/about', [AboutController::class, 'about']);
-Route::get('/articles/{id}', [ArticleController::class, 'article']);
+// Route::get('/', [HomeController::class, 'index']);
+// Route::get('/about', [AboutController::class, 'about']);
+// Route::get('/articles/{id}', [ArticleController::class, 'article']);
+
+
+Route::prefix('product') -> group( function() {
+    Route::get('/home', [PageController::class, 'hello']);
+} );
+
+Route::prefix('product') -> group( function() {
+    Route::get('/category', [PageController::class, 'show_product']);
+});
+
+Route::prefix('product') -> group( function() {
+    Route::get('/news/{param}', [PageController::class, 'show_news']);
+});
+
+Route::prefix('daftar')->group(function () {
+    Route::get('/program', [PageController::class, 'show_program']);
+});
+
+Route::get('/about', [PageController::class, 'show_about_us']);
+
+Route::resource('contact_us', PageController::class);

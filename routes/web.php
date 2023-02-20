@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/about', function () {
+    return "NIM: 2141720058, Nama: Patria Anggara Susilo Putra";
+} );
+
+Route::get('/articles/{id}', function ($id) {
+    return "Halaman artikel dengan id " . $id;
+} );

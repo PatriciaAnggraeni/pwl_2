@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/about', function () {
-    return "NIM: 2141720058, Nama: Patria Anggara Susilo Putra";
-} );
+// Route::get('/about', function () {
+//     return "NIM: 2141720058, Nama: Patria Anggara Susilo Putra";
+// } );
 
-Route::get('/articles/{id}', function ($id) {
-    return "Halaman artikel dengan id " . $id;
-} );
+// Route::get('/articles/{id}', function ($id) {
+//     return "Halaman artikel dengan id " . $id;
+// } );
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [AboutController::class, 'about']);
+Route::get('/articles/{id}', [ArticleController::class, 'article']);
